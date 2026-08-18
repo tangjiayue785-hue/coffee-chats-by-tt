@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lily Hodder — Coffee Chat Notes</title>
+<style>
+:root{
+  --ink:#23211e;
+  --muted:#74706a;
+  --paper:#f7f4ee;
+  --paper2:#eee8dd;
+  --card:#fffdf8;
+  --line:#d9d2c7;
+  --accent:#8b6549;
+  --accent2:#b68f71;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:Georgia,"Times New Roman",serif;
+  line-height:1.7;
+}
+a{color:inherit}
+nav{
+  position:sticky;top:0;z-index:20;
+  display:flex;justify-content:space-between;align-items:center;
+  min-height:72px;padding:0 7vw;
+  border-bottom:1px solid var(--line);
+  background:rgba(247,244,238,.95);
+  backdrop-filter:blur(10px);
+}
+.logo{font-size:21px;font-weight:bold;text-decoration:none}
+.navlinks{display:flex;gap:24px;font-family:Arial,sans-serif;font-size:12px}
+.navlinks a{text-decoration:none;color:var(--ink)}
+.navlinks a:hover{color:var(--accent)}
+.wrap{max-width:1180px;margin:auto}
+.hero{
+  padding:96px 7vw 86px;
+  border-bottom:1px solid var(--line);
+}
+.kicker{
+  font:11px Arial,sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  color:var(--accent);
+  margin-bottom:18px;
+}
+h1,h2,h3{font-weight:normal}
+h1{
+  max-width:950px;
+  font-size:clamp(50px,7vw,88px);
+  line-height:1;
+  letter-spacing:-.045em;
+  margin:0 0 28px;
+}
+.hero p{
+  max-width:680px;
+  font-size:20px;
+  color:#57534d;
+}
+.button{
+  display:inline-block;margin-top:12px;
+  padding:12px 20px;background:var(--ink);color:white;text-decoration:none;
+  font:12px Arial,sans-serif;border-radius:2px;
+}
+section{padding:78px 7vw}
+.section-head{
+  display:flex;justify-content:space-between;align-items:end;
+  gap:20px;margin-bottom:34px;
+}
+.section-head h2{font-size:40px;margin:0;letter-spacing:-.025em}
+.section-head p{margin:0;color:var(--muted);font:12px Arial,sans-serif}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{
+  background:var(--card);border:1px solid var(--line);
+  padding:28px;min-height:280px;
+  display:flex;flex-direction:column;
+  transition:.2s ease;
+}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(40,30,20,.06)}
+.tag{
+  font:10px Arial,sans-serif;
+  text-transform:uppercase;letter-spacing:.14em;color:var(--accent);
+  margin-bottom:18px;
+}
+.card h3{font-size:25px;line-height:1.2;margin:0 0 8px}
+.meta{font:12px Arial,sans-serif;color:var(--muted);margin-bottom:18px}
+.card p{font-size:15px;color:#57534d}
+.card a{margin-top:auto;padding-top:20px;font:12px Arial,sans-serif;text-decoration:none}
+.band{background:var(--paper2)}
+.book-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.book{border-top:1px solid #c9c0b4;padding-top:18px}
+.book .num{font:10px Arial,sans-serif;color:var(--accent)}
+.book h3{font-size:22px;line-height:1.2;margin:8px 0 4px}
+.book .author{font:11px Arial,sans-serif;color:var(--muted)}
+.book p{font-size:14px;color:#55514c}
+.page-header{
+  padding:82px 7vw 55px;border-bottom:1px solid var(--line);
+}
+.page-header h1{font-size:clamp(44px,6vw,74px);max-width:900px}
+.page-header .lede{max-width:760px;font-size:19px;color:#5d5953}
+.content{
+  max-width:900px;margin:auto;padding:64px 7vw 90px;
+}
+.content h2{font-size:34px;margin:48px 0 16px}
+.content h3{font-size:23px;margin:30px 0 10px}
+.content p,.content li{font-size:16px;color:#47443f}
+.content ul{padding-left:22px}
+.note{
+  border-left:3px solid var(--accent2);
+  background:#f2ede4;
+  padding:18px 20px;
+  margin:24px 0;
+  color:#4d4944;
+}
+.reflection{
+  border:1px solid var(--line);
+  background:var(--card);
+  padding:24px;
+  margin:26px 0;
+}
+.reflection strong{
+  display:block;
+  font:10px Arial,sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:var(--accent);
+  margin-bottom:8px;
+}
+.split{
+  display:grid;grid-template-columns:1fr 1fr;gap:26px;
+}
+.quote{
+  max-width:830px;margin:auto;text-align:center;padding:34px 0;
+}
+.quote p{font-size:29px;line-height:1.4;margin:0 0 14px}
+.quote span{font:10px Arial,sans-serif;text-transform:uppercase;letter-spacing:.15em;color:var(--muted)}
+footer{
+  border-top:1px solid var(--line);
+  padding:28px 7vw;
+  display:flex;justify-content:space-between;
+  font:11px Arial,sans-serif;color:var(--muted);
+}
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr}
+  .book-grid{grid-template-columns:1fr 1fr}
+  .split{grid-template-columns:1fr}
+}
+@media(max-width:650px){
+  nav{padding:0 5vw}
+  .navlinks{gap:12px;font-size:11px}
+  .hero,section,.page-header,.content{padding-left:5vw;padding-right:5vw}
+  .book-grid{grid-template-columns:1fr}
+  h1{font-size:50px}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">coffee chats.</a>
+  <div class="navlinks">
+    <a href="index.html#chats">Coffee Chats</a>
+    <a href="books.html">Books</a>
+    <a href="index.html#about">About</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="wrap">
+    <div class="kicker">Coffee Chat Notes</div>
+    <h1>Lily Hodder</h1>
+    <p class="lede">A conversation about career flexibility, learning across industries, networking with genuine curiosity, and staying open to paths that may not make sense immediately.</p>
+  </div>
+</header>
+<main class="content">
+
+  <div class="note"><strong>Publishing note:</strong> This page is written as a personal learning summary rather than a transcript. If publishing publicly with Lily’s name and career history, it is a good idea to ask her permission first.</div>
+
+  <h2>1. Career & learning</h2>
+  <h3>“You can always learn”</h3>
+  <ul>
+    <li>With the right attitude, you can learn almost anything.</li>
+    <li>Be willing to explore different options and immerse yourself in unfamiliar industries.</li>
+    <li>You do not need to decide your entire career path too early.</li>
+  </ul>
+
+  <h3>The challenge of changing industries or roles</h3>
+  <p>A non-linear career can be powerful, but other people may not immediately understand how one role connects to another. The responsibility is therefore on you to explain that connection clearly: what you learned, which skills transfer, and why your previous experience strengthens your current direction.</p>
+
+  <div class="reflection">
+    <strong>My reflection · Think Again</strong>
+    <p>This strongly reminded me of Adam Grant’s <em>Think Again</em>. Career choices do not have to be treated as permanent commitments. As you gain information, experience and self-knowledge, it is reasonable to reconsider earlier assumptions and change direction.</p>
+  </div>
+
+  <h2>2. Life philosophy</h2>
+  <h3>Do things that make you happy</h3>
+  <p>Progressing along a conventional path does not mean you have to remain on it forever. You can still explore a new interest, study something different, join societies, volunteer, read widely, or move in a different direction.</p>
+
+  <h3>When your current position is not what you expected</h3>
+  <p>Do not assume immediately that you made the wrong decision. Stay long enough to observe, learn and explore. Sometimes the value of an experience only becomes clear after you have immersed yourself in it.</p>
+
+  <h3>There is always a way to change</h3>
+  <ul>
+    <li>Transfer courses or majors.</li>
+    <li>Study a Master’s degree.</li>
+    <li>Move into another industry.</li>
+    <li>Move to another country.</li>
+    <li>Explore different organisations or role types.</li>
+  </ul>
+
+  <div class="reflection">
+    <strong>My reflection · Hidden Potential</strong>
+    <p>This conversation also connected with Adam Grant’s <em>Hidden Potential</em>. I kept thinking about the idea of learning like a sponge: being open, absorbing experience, and developing through the quality of your learning rather than assuming your starting point determines your ceiling.</p>
+  </div>
+
+  <h2>3. Networking</h2>
+  <h3>Reach out to interesting people</h3>
+  <p>Do not be afraid to contact people whose careers or experiences genuinely interest you. Many people are happy to share what they have learned. The important distinction is approaching them with curiosity rather than immediately asking for something.</p>
+
+  <h2>4. Psychology + Economics → Consulting</h2>
+  <div class="split">
+    <div>
+      <h3>Psychology</h3>
+      <ul>
+        <li>Working with people</li>
+        <li>Understanding team dynamics</li>
+        <li>Understanding clients</li>
+        <li>Communication</li>
+        <li>Stakeholder management</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Economics</h3>
+      <ul>
+        <li>Seeing broader patterns and trends</li>
+        <li>Understanding markets</li>
+        <li>Quantitative and analytical skills</li>
+        <li>Thinking about incentives and systems</li>
+      </ul>
+    </div>
+  </div>
+  <p><strong>Consulting:</strong> problem solving + willingness to learn + communication.</p>
+
+  <h2>5. University advice</h2>
+  <p>Do not over-optimise university around one predetermined career. Explore subjects, societies, volunteering, internships, industries and people. Some experiences may seem irrelevant at first and become useful later.</p>
+
+  <div class="note">A useful question from the conversation: do not ask only “What will this lead to?” Sometimes ask, “Am I interested in this?”</div>
+
+  <h2>6. AI + future of work</h2>
+  <p>AI is evolving quickly, which means assumptions and plans may need to be revisited more often. The data-centre industry is also changing rapidly because of growing compute demand.</p>
+  <p>One especially interesting takeaway was that AI is not only a technology issue. It also intersects with business, infrastructure, sustainability, regulation, public policy and energy requirements.</p>
+
+  <h2>7. Books mentioned</h2>
+  <ul>
+    <li><em>Sophie’s World</em> — Jostein Gaarder</li>
+    <li><em>The Five People You Meet in Heaven</em> — Mitch Albom</li>
+    <li><em>Good Intentions</em></li>
+    <li><em>The Correspondent</em></li>
+  </ul>
+
+  <h2>8. Career snapshot</h2>
+  <h3>Current</h3>
+  <p>Strategy & Operations Manager @ NEOM</p>
+  <h3>Previously</h3>
+  <ul>
+    <li>Digital Banking & Core Business Operations Manager @ Deloitte</li>
+    <li>Founder — LARA: Legal Aid Referral Assistance</li>
+    <li>President / Vice-President — Young Alumni Committee, FBE @ UniMelb</li>
+    <li>Management Consulting Analyst @ Accenture</li>
+  </ul>
+
+</main>
+
+<footer>
+  <span>coffee chats.</span>
+  <span>© 2026</span>
+</footer>
+</body>
+</html>
